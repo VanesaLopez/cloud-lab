@@ -3,3 +3,7 @@ services:
   - docker
 script:
   - docker build -t practica .
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker tag practica $DOCKER_USER/practica
+  - docker push $DOCKER_USER/practica
